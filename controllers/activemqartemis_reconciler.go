@@ -1638,8 +1638,9 @@ func (reconciler *ActiveMQArtemisReconcilerImpl) NewPodTemplateSpecForCR(customR
 
 	//address settings
 	addressSettings := customResource.Spec.AddressSettings.AddressSetting
-	if len(addressSettings) > 0 {
-		reqLogger.Info("processing address-settings")
+	diverts := customResource.Spec.Diverts
+	if len(addressSettings) > 0 || len(diverts) > 0 {
+		reqLogger.Info("processing address-settings / diverts")
 
 		var configYaml strings.Builder
 		var configSpecials map[string]string = make(map[string]string)
