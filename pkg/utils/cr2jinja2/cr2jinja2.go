@@ -827,25 +827,26 @@ func processDivertsV1beta1(sb *strings.Builder, diverts *[]v1beta1.DivertType, s
 	if diverts == nil || len(*diverts) == 0 {
 		return
 	}
-	sb.WriteString("diverts:\n")
+	sb.WriteString("broker_xml:\n")
+	sb.WriteString("  diverts:\n")
 	for _, s := range *diverts {
 		if value := checkStringSpecial(&s.Name, specials); value != nil {
-			sb.WriteString("- name: " + *value + "\n")
+			sb.WriteString("  - name: " + *value + "\n")
 		}
 		if value := checkStringSpecial(s.RoutingName, specials); value != nil {
-			sb.WriteString("  routing_name: " + *value + "\n")
+			sb.WriteString("    routing_name: " + *value + "\n")
 		}
 		if value := checkStringSpecial(s.Address, specials); value != nil {
-			sb.WriteString("  address: " + *value + "\n")
+			sb.WriteString("    address: " + *value + "\n")
 		}
 		if value := checkStringSpecial(s.Filter, specials); value != nil {
-			sb.WriteString("  filter: " + *value + "\n")
+			sb.WriteString("    filter: " + *value + "\n")
 		}
 		if value := checkStringSpecial(s.ForwardingAddress, specials); value != nil {
-			sb.WriteString("  forwarding_address: " + *value + "\n")
+			sb.WriteString("    forwarding_address: " + *value + "\n")
 		}
 		if value := checkBool(s.Exclusive); value != nil {
-			sb.WriteString("  exclusive: " + *value + "\n")
+			sb.WriteString("    exclusive: " + *value + "\n")
 		}
 	}
 
