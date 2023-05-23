@@ -174,8 +174,10 @@ func MakeBrokerCfgOverrides(customResource interface{}, envVar *string, output *
 
 func MakeBrokerCfgOverridesForV1beta1(customResource *v1beta1.ActiveMQArtemis, envVar *string, output *string, sb *strings.Builder, specials map[string]string) {
 	var addressSettings *[]v1beta1.AddressSettingType = &customResource.Spec.AddressSettings.AddressSetting
+	var diverts *[]v1beta1.DivertType = &customResource.Spec.Diverts
 
 	processAddressSettingsV1beta1(sb, addressSettings, specials)
+	processDivertsV1beta1(sb, diverts, specials)
 }
 
 func MakeBrokerCfgOverridesForV2alpha5(customResource *v2alpha5.ActiveMQArtemis, envVar *string, output *string, sb *strings.Builder, specials map[string]string) {
@@ -813,6 +815,34 @@ func processAddressSettingsV1beta1(sb *strings.Builder, addressSettings *[]v1bet
 		}
 		if value := checkStringSpecial(s.ConfigDeleteDiverts, specials); value != nil {
 			sb.WriteString("  config_delete_diverts: " + *value + "\n")
+		}
+	}
+}
+
+func processDivertsV1beta1(sb *strings.Builder, diverts *[]v1beta1.DivertType, specials map[string]string) {
+
+	if diverts == nil || len(*diverts) == 0 {
+		return
+	}
+	sb.WriteString("diverts:\n")
+	for _, s := range *diverts {
+		if value := checkStringSpecial(&s.Name, specials); value != nil {
+			sb.WriteString("- name: " + *value + "\n")
+		}
+		if value := checkStringSpecial(s.RoutingName, specials); value != nil {
+			sb.WriteString("  routing_name: " + *value + "\n")
+		}
+		if value := checkStringSpecial(s.Address, specials); value != nil {
+			sb.WriteString("  address: " + *value + "\n")
+		}
+		if value := checkStringSpecial(s.Filter, specials); value != nil {
+			sb.WriteString("  filter: " + *value + "\n")
+		}
+		if value := checkStringSpecial(s.ForwardingAddress, specials); value != nil {
+			sb.WriteString("  forwarding_address: " + *value + "\n")
+		}
+		if value := checkBool(s.Exclusive); value != nil {
+			sb.WriteString("  exclusive: " + *value + "\n")
 		}
 	}
 

@@ -735,6 +735,81 @@ func IsEqualV1Beta1(currentAddressSetting []brokerv1beta1.AddressSettingType, ne
 	return true
 }
 
+func IsEqualV1Beta1Diverts(currentDiverts []brokerv1beta1.DivertType, newDiverts []brokerv1beta1.DivertType) bool {
+	log.Info("Comparing diverts...", "current: ", currentDiverts, "new: ", newDiverts)
+
+	for _, curSetting := range currentDiverts {
+
+		var newSetting *brokerv1beta1.DivertType = nil
+		for _, setting := range newDiverts {
+			if setting.Name == curSetting.Name {
+				newSetting = &setting
+				break
+			}
+		}
+		if newSetting == nil {
+			return false
+		}
+		//compare the whole struct
+		if newSetting.RoutingName == nil {
+			if curSetting.RoutingName != nil {
+				return false
+			}
+		} else if curSetting.RoutingName != nil {
+			if *curSetting.RoutingName != *newSetting.RoutingName {
+				return false
+			}
+		} else {
+			return false
+		}
+		if newSetting.Address == nil {
+			if curSetting.Address != nil {
+				return false
+			}
+		} else if curSetting.Address != nil {
+			if *curSetting.Address != *newSetting.Address {
+				return false
+			}
+		} else {
+			return false
+		}
+		if newSetting.Filter == nil {
+			if curSetting.Filter != nil {
+				return false
+			}
+		} else if curSetting.Filter != nil {
+			if *curSetting.Filter != *newSetting.Filter {
+				return false
+			}
+		} else {
+			return false
+		}
+		if newSetting.ForwardingAddress == nil {
+			if curSetting.ForwardingAddress != nil {
+				return false
+			}
+		} else if curSetting.ForwardingAddress != nil {
+			if *curSetting.ForwardingAddress != *newSetting.ForwardingAddress {
+				return false
+			}
+		} else {
+			return false
+		}
+		if newSetting.Exclusive == nil {
+			if curSetting.Exclusive != nil {
+				return false
+			}
+		} else if curSetting.Exclusive != nil {
+			if *curSetting.Exclusive != *newSetting.Exclusive {
+				return false
+			}
+		} else {
+			return false
+		}
+	}
+	return true
+}
+
 // assuming the lengths of 2 array are equal.
 func IsEqualV2Alpha5(currentAddressSetting []brokerv2alpha5.AddressSettingType, newAddressSetting []brokerv2alpha5.AddressSettingType) bool {
 	log.Info("Comparing addressSettings...", "current: ", currentAddressSetting, "new: ", newAddressSetting)

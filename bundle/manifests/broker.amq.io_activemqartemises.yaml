@@ -543,6 +543,34 @@ spec:
                     description: If the embedded server requires client authentication
                     type: boolean
                 type: object
+              diverts:
+                description: Specifies diverts
+                items:
+                  properties:
+                    name:
+                      description: The divert name
+                      type: string
+                    routingName:
+                      description: The name of the divert within the address
+                      type: string
+                    address:
+                      description: The address for which the divert is active
+                      type: string
+                    filter:
+                      description: Filter which selects if a message applies for this divert or not
+                      type: string
+                    forwardingAddress:
+                      description: The address to which the divert will forward
+                      type: string
+                    exclusive:
+                      description: The address to which the divert will forward
+                      type: boolean
+                  required:
+                  - name
+                  - address
+                  - forwardingAddress
+                  type: object
+                type: array
               deploymentPlan:
                 description: Specifies the deployment plan
                 properties:

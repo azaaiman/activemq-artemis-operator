@@ -67,6 +67,9 @@ type ActiveMQArtemisSpec struct {
 	// The ingress domain to expose the application. By default, on Kubernetes it is apps.artemiscloud.io and on OpenShift it is the Ingress Controller domain.
 	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Ingress Domain",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:text"}
 	IngressDomain string `json:"ingressDomain,omitempty"`
+	// Specifies diverts
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Diverts"
+	Diverts []DivertType `json:"diverts,omitempty"`
 }
 
 type AddressSettingsType struct {
@@ -283,6 +286,27 @@ type AddressSettingType struct {
 	// the maximum number of messages allowed on the address (default -1).  This is used in PAGING, BLOCK and FAIL policies. It does not support notations and it is a simple number of messages allowed.
 	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Max Size Messages",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:number"}
 	MaxSizeMessages *int64 `json:"maxSizeMessages,omitempty"`
+}
+
+type DivertType struct {
+	// The divert name
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Name",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:text"}
+	Name string `json:"name"`
+	// The name of the divert within the address
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Routing Name",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:text"}
+	RoutingName *string `json:"routingName,omitempty"`
+	// The address for which the divert is active
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Address",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:text"}
+	Address *string `json:"address"`
+	// Filter which selects if a message applies for this divert or not
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Filter",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:text"}
+	Filter *string `json:"filter,omitempty"`
+	// The address to which the divert will forward
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Forwarding Address",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:text"}
+	ForwardingAddress *string `json:"forwardingAddress"`
+	// If the divert is exclusive, a diverted message will not be send to the original address, otherwise it will
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Exclusive",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:booleanSwitch"}
+	Exclusive *bool `json:"exclusive,omitempty"`
 }
 
 type DeploymentPlanType struct {
