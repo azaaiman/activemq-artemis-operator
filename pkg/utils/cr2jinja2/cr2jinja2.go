@@ -658,6 +658,9 @@ func processAddressSettingsV1beta1(sb *strings.Builder, addressSettings *[]v1bet
 		if value := checkInt32(s.RedeliveryDelay); value != nil {
 			sb.WriteString("  redelivery_delay: " + *value + "\n")
 		}
+		if value := checkFloat32(s.RedeliveryDelayMultiplier); value != nil {
+			sb.WriteString("  redelivery_delay_multiplier: " + *value + "\n")
+		}
 		if value := checkInt32(s.MaxRedeliveryDelay); value != nil {
 			sb.WriteString("  max_redelivery_delay: " + *value + "\n")
 		}

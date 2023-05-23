@@ -574,6 +574,11 @@ func (in *AddressSettingType) DeepCopyInto(out *AddressSettingType) {
 		*out = new(int32)
 		**out = **in
 	}
+	if in.RedeliveryDelayMultiplier != nil {
+		in, out := &in.RedeliveryDelayMultiplier, &out.RedeliveryDelayMultiplier
+		*out = new(float32)
+		**out = **in
+	}
 	if in.MaxRedeliveryDelay != nil {
 		in, out := &in.MaxRedeliveryDelay, &out.MaxRedeliveryDelay
 		*out = new(int32)

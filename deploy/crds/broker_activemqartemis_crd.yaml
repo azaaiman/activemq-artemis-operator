@@ -309,6 +309,9 @@ spec:
                           description: the time (in ms) to wait before redelivering a cancelled message.
                           format: int32
                           type: integer
+                        redeliveryDelayMultiplier:
+                          description: defines the number by which the redelivery-delay will be multiplied on each subsequent redelivery attempt
+                          type: number
                         redistributionDelay:
                           description: how long (in ms) to wait after the last consumer is closed on a queue before redistributing messages.
                           format: int32
