@@ -116,6 +116,9 @@ type AddressSettingType struct {
 	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Redelivery Delay",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:number"}
 	RedeliveryDelay *int32 `json:"redeliveryDelay,omitempty"`
 
+	// defines the number by which the redelivery-delay will be multiplied on each subsequent redelivery attempt
+	//+operator-sdk:csv:customresourcedefinitions:type=spec,displayName="Redelivery Delay Multiplier",xDescriptors={"urn:alm:descriptor:com.tectonic.ui:number"}
+	RedeliveryDelayMultiplier *float32 `json:"redeliveryDelayMultiplier,omitempty"`
 	// dropping these two fields due to historicatl incorrect conversion from *float32 to *string
 	// without conversion support. Existing CR's with these set cannot be reconciled
 	//

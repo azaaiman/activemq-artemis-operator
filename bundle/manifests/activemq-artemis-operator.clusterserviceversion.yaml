@@ -927,6 +927,11 @@ spec:
         path: addressSettings.addressSetting[0].redeliveryDelay
         x-descriptors:
         - urn:alm:descriptor:com.tectonic.ui:number
+      - description: defines the number by which the redelivery-delay will be multiplied on each subsequent redelivery attempt
+        displayName: Redelivery Delay Multiplier
+        path: addressSettings.addressSetting[0].redeliveryDelayMultiplier
+        x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:number
       - description: how long (in ms) to wait after the last consumer is closed on
           a queue before redistributing messages.
         displayName: Redistribution Delay
