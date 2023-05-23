@@ -1113,6 +1113,39 @@ spec:
         path: console.useClientAuth
         x-descriptors:
         - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
+      - description: Specifies the diverts configuration
+        displayName: Diverts
+        path: diverts
+      - description: The divert name
+        displayName: Name
+        path: diverts[0].name
+        x-descriptors:
+        - urn:alm:descriptor:com.tectonic.ui:text
+      - description: The name of the divert within the address
+        displayName: Routing Name
+        path: diverts[0].routingName
+        x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:text
+      - description: The address for which the divert is active
+        displayName: Address
+        path: diverts[0].address
+        x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:text
+      - description: Filter which selects if a message applies for this divert or not
+        displayName: Filter
+        path: diverts[0].filter
+        x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:text
+      - description: The address to which the divert will forward
+        displayName: Forwarding Address
+        path: diverts[0].forwardingAddress
+        x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:text
+      - description: If the divert is exclusive, a diverted message will not be send to the original address, otherwise it will
+        displayName: Exclusive
+        path: diverts[0].exclusive
+        x-descriptors:
+          - urn:alm:descriptor:com.tectonic.ui:booleanSwitch
       - description: Specifies the deployment plan
         displayName: Deployment Plan
         path: deploymentPlan

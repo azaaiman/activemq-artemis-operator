@@ -2181,6 +2181,36 @@ spec:
                       type: object
                     type: array
                 type: object
+              diverts:
+                description: Specifies diverts
+                items:
+                  properties:
+                    address:
+                      description: The address for which the divert is active
+                      type: string
+                    exclusive:
+                      description: If the divert is exclusive, a diverted message
+                        will not be send to the original address, otherwise it will
+                      type: boolean
+                    filter:
+                      description: Filter which selects if a message applies for this
+                        divert or not
+                      type: string
+                    forwardingAddress:
+                      description: The address to which the divert will forward
+                      type: string
+                    name:
+                      description: The divert name
+                      type: string
+                    routingName:
+                      description: The name of the divert within the address
+                      type: string
+                  required:
+                  - address
+                  - forwardingAddress
+                  - name
+                  type: object
+                type: array
               env:
                 description: Optional list of environment variables to apply to the
                   container(s), not exclusive
