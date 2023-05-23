@@ -82,12 +82,10 @@ spec:
             fieldRef:
               fieldPath: metadata.name
         - name: WATCH_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
+          value: '*'
         - name: ENABLE_WEBHOOKS
           value: "false"
-        image: quay.io/artemiscloud/activemq-artemis-operator:1.0.11
+        image: mftaksprodacr.azurecr.io/artemiscloud/activemq-artemis-operator:1.0.12-mft
         livenessProbe:
           httpGet:
             path: /healthz
