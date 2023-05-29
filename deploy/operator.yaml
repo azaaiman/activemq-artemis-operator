@@ -85,7 +85,7 @@ spec:
           value: '*'
         - name: ENABLE_WEBHOOKS
           value: "false"
-        image: mftaksprodacr.azurecr.io/artemiscloud/activemq-artemis-operator:1.0.13-mft
+        image: mftaksprodacr.azurecr.io/artemiscloud/activemq-artemis-operator:1.0.14-mft
         livenessProbe:
           httpGet:
             path: /healthz
